@@ -1,6 +1,6 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from 'mongoose';
-import { EmployeeTier, EmployeeStatus } from '../enums/Employee.enum';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
+import { EmployeeStatus, EmployeeTier } from "../enums/Employee.enum";
 
 export type EmployeeDocument = Employee & Document;
 
@@ -8,16 +8,18 @@ export type EmployeeDocument = Employee & Document;
 export class Employee {
     @Prop()
     id: string
-    @Prop({required:true})
+    @Prop({ required: true })
     firstName: string
     @Prop({ required: true })
     lastName: string
     @Prop()
-    city: string
+    designation: string
+    @Prop()
+    nearestCity: string
     @Prop()
     tier: EmployeeTier
     @Prop()
-    status:EmployeeStatus
+    status: EmployeeStatus
 }
 
 export const EmployeeSchema = SchemaFactory.createForClass(Employee);
